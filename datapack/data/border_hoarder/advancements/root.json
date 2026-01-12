@@ -1,0 +1,10 @@
+{
+    "criteria": {
+        "item_collected": {
+            "trigger": "minecraft:inventory_changed"
+        }
+    },
+    "rewards": {
+        "function": "boarder_hoarder:check_item"
+    }
+}
