@@ -10,7 +10,7 @@
 #execute as @a if items entity @s inventory.* arrow[custom_data:{bh_action:next_page}] run function border_hoarder:journal/next_page
 #execute as @a if items entity @s container.* arrow[custom_data~{bh_action:next_page}] run function border_hoarder:journal/next_page
 
-execute as @a if items entity @s inventory.*[custom_data~{bh_action:next_page}] run function border_hoarder:journal/next_page
+execute as @a if items entity @s inventory.* arrow[custom_data~{bh_action:next_page}] run function border_hoarder:journal/next_page
 
 #execute as @a store success score @s bh_temp run clear @s arrow[custom_data~{bh_action:next_page}]
 #execute as @a if score @s bh_temp matches 1.. run function border_hoarder:journal/next_page

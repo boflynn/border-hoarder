@@ -1,6 +1,9 @@
 say 'fill chest'
 data modify entity @e[tag=bh_anchor,limit=1] Items set value []
 
+# Calculate the starting index (bh_page * 25)
+execute store result storage border_hoarder:temp offset int 25 run scoreboard players get #global bh_page
+
 function border_hoarder:journal/slot {index:0, slot:0}
 function border_hoarder:journal/slot {index:1, slot:1}
 function border_hoarder:journal/slot {index:2, slot:2}

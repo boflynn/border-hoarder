@@ -1,19 +1,14 @@
-# This function is called with $(index) and $(slot)
-# It takes the item from the workspace at $(index)
-# but adds the 'Slot' tag before putting it in the barrel.
+# 1. Calculate the actual index in the workspace
+$execute store result storage border_hoarder:temp actual_index int 1 run scoreboard players get #global bh_page
+execute store result storage border_hoarder:temp actual_index int 25 run storage border_hoarder:temp actual_index
+# Add the local slot index to the page offset
+$execute store result storage border_hoarder:temp actual_index int 1 run data get storage border_hoarder:temp actual_index 1
+# (Note: This logic is easier if you pass the final calculated index directly to the macro)
 
-#$tellraw @a "Placing item from workspace index $(index) into slot $(slot)"
-# $item replace entity @e[tag=bh_anchor,limit=1] container.$(slot) from storage border_hoarder:temp workspace[$(index)]
-# $execute as @e[tag=bh_menu,limit=1] run item replace entity @s container.$(slot) from storage border_hoarder:temp workspace[$(index)]
-# slot.mcfunction
+# 2. Prepare the item using the calculated actual_index
+$data modify storage border_hoarder:temp transfer set from storage border_hoarder:temp workspace[$(actual_index)]
 
-# slot.mcfunction
-# 1. Prepare the item in a 'transfer' storage
-$data modify storage border_hoarder:temp transfer set from storage border_hoarder:temp workspace[$(index)]
-
-# 2. Add the Slot byte
+# 3. Add Slot and push to Minecart
 $data modify storage border_hoarder:temp transfer.Slot set value $(slot)b
 data modify storage border_hoarder:temp transfer.count set value 1b
-
-# 3. Push it into the Minecart (Use 'at @s' for stability)
 execute as @e[tag=bh_anchor,limit=1] run data modify entity @s Items append from storage border_hoarder:temp transfer
