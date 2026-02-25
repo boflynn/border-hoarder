@@ -1,21 +1,15 @@
-# Clear the current chest minecart items
-execute as @e[tag=bh_anchor,limit=1] run data modify entity @s Items set value []
+# 1. Reset the UI slot to 0
+scoreboard players set #temp_slot bh_loop_slot 0
 
-# Calculate the start index once: bh_page * 25
-execute store result storage border_hoarder:temp params.start_index int 25 run scoreboard players get #global bh_page
+# 2. Calculate the starting index for the page (Page * 25)
+# This uses the same math we used to store the NBT start_index
+execute store result score #temp_idx bh_loop_idx run scoreboard players get #global bh_page
+scoreboard players set #const_25 bh_loop_idx 25
+scoreboard players operation #temp_idx bh_loop_idx *= #const_25 bh_loop_idx
 
-# To fill slot 0 (Index = Start + 0)
-data modify storage border_hoarder:temp params.actual_index set from storage border_hoarder:temp params.start_index
-data modify storage border_hoarder:temp params.slot set value 0b
-function border_hoarder:journal/slot with storage border_hoarder:temp params
+# 3. Now store these into the params storage for the 'with storage' call
+execute store result storage border_hoarder:temp params.slot int 1 run scoreboard players get #temp_slot bh_loop_slot
+execute store result storage border_hoarder:temp params.actual_index int 1 run scoreboard players get #temp_idx bh_loop_idx
 
-# To fill slot 1 (Index = Start + 1)
-execute store result storage border_hoarder:temp params.actual_index int 1 run scoreboard players add #temp dummy 1
-data modify storage border_hoarder:temp params.slot set value 1b
-function border_hoarder:journal/slot with storage border_hoarder:temp params
-
-# ... repeat for other slots
-
-
-# Add the Navigation Arrow in slot 26
-execute as @e[tag=bh_anchor,limit=1] run data modify entity @s Items append value {Slot:26b, id: "minecraft:arrow", count: 1, components: {"minecraft:custom_data": {bh_action: "next_page", bh_display: 1b}, "minecraft:item_name": '{"text":"Next Page"}'}}
+# 4. Start the loop
+function border_hoarder:journal/fill_loop with storage border_hoarder:temp params

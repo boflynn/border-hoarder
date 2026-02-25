@@ -6,6 +6,8 @@ scoreboard objectives setdisplay sidebar bh_discovered
 scoreboard objectives add bh_click_cooldown dummy
 scoreboard objectives add bh_timer dummy
 scoreboard players set #global bh_timer 0
+scoreboard objectives add bh_loop_idx dummy
+scoreboard objectives add bh_loop_slot dummy
 
 # Place the pedestal at the center (where the player is standing)
 setblock ~ ~ ~ minecraft:barrel{CustomName:'{"text":"Discovery Pedestal","color":"gold"}'}
