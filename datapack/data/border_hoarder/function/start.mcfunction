@@ -3,7 +3,7 @@
 
 scoreboard objectives add bh_discovered dummy "§6Items Discovered"
 scoreboard objectives setdisplay sidebar bh_discovered
-
+scoreboard objectives add bh_click_cooldown dummy
 scoreboard objectives add bh_timer dummy
 scoreboard players set #global bh_timer 0
 
