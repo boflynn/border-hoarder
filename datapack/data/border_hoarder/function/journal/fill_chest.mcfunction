@@ -1,5 +1,6 @@
 # 1. Reset the UI slot to 0
 scoreboard players set #temp_slot bh_loop_slot 0
+scoreboard players set #temp_idx bh_loop_idx 0
 
 # 2. Calculate the starting index for the page (Page * 25)
 # This uses the same math we used to store the NBT start_index
