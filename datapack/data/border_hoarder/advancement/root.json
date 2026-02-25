@@ -5,6 +5,6 @@
         }
     },
     "rewards": {
-        "function": "boarder_hoarder:check_item"
+        "function": "border_hoarder:inventory_changed_trigger"
     }
 }

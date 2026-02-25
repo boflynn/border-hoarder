@@ -1,8 +1,8 @@
 {
-	"pack": {
-		"description": "Datapack",
+    "pack": {
+        "description": "Datapack",
         "pack_format": 88,
         "min_format": 87,
         "max_format": 89
-	}
+    }
 }
