@@ -14,3 +14,6 @@ execute store result storage border_hoarder:temp params.actual_index int 1 run s
 
 # 4. Start the loop
 function border_hoarder:journal/fill_loop with storage border_hoarder:temp params
+
+# Navigation Arrow
+item replace entity @e[tag=bh_anchor,limit=1] container.26 with minecraft:arrow[item_name='{"text":"Next Page","color":"green","italic":false}',custom_data={bh_action:next_page}]
