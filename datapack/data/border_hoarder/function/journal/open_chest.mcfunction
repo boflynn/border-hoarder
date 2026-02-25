@@ -1,0 +1,1 @@
+function border_hoarder:journal/fill_chest
