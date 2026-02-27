@@ -1,16 +1,17 @@
 # Start game
-# Called by player when they find a suitable location to start the Border Hoarder game
+# Manually ran by player when they find a suitable location to start the Border Hoarder game
 
+# Create initial objectives and default values
 scoreboard objectives add bh_discovered dummy "§6Items Discovered"
 scoreboard objectives setdisplay sidebar bh_discovered
 scoreboard objectives add bh_click_cooldown dummy
 scoreboard objectives add bh_timer dummy
 scoreboard objectives add bh_page dummy
+scoreboard objectives add bh_loop_idx dummy
+scoreboard objectives add bh_loop_slot dummy
 
 scoreboard players set #global bh_timer 0
 scoreboard players set #global bh_page 0
-scoreboard objectives add bh_loop_idx dummy
-scoreboard objectives add bh_loop_slot dummy
 
 # Place the pedestal at the center (where the player is standing)
 setblock ~ ~ ~ minecraft:barrel{CustomName:'{"text":"Discovery Pedestal","color":"gold"}'}
