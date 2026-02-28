@@ -18,3 +18,6 @@ playsound minecraft:entity.player.levelup player @a ~ ~ ~ 0.7 1.2
 
 # Add 1 to the global total player whenever this runs
 scoreboard players add #global_total bh_total 1
+
+function border_hoarder:journal/calculate_missing
+function border_hoarder:journal/open_chest
