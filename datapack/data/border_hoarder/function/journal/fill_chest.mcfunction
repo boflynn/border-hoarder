@@ -17,27 +17,9 @@ execute store result storage border_hoarder:temp params.actual_index int 1 run s
 # Start the fill loop that will go through a page of items
 function border_hoarder:journal/fill_loop with storage border_hoarder:temp params
 
-# Add navigation buttons
+# Add reset button
 item replace entity @e[tag=bh_anchor,limit=1] container.24 with minecraft:barrier[item_name={"text":"Reset","color":"yellow","italic":false},custom_data={bh_action:reset,bh_display:1b}]
 
-# (e.g., if we are on page index 0, the next page starts at 24)
-scoreboard players operation #next_page_start bh_loop_idx = #global bh_page
-scoreboard players add #next_page_start bh_loop_idx 1
-scoreboard players operation #next_page_start bh_loop_idx *= #page_size bh_loop_idx
-
-# 2. Get the total number of items in the workspace
-execute store result score #total_items bh_loop_idx run data get storage border_hoarder:temp workspace
-
-#tellraw @a ["Current next_page_start: ", {"score":{"name":"#next_page_start","objective":"bh_loop_idx"}}]
-#tellraw @a ["Current total_items: ", {"score":{"name":"#total_items","objective":"bh_loop_idx"}}]
-
-scoreboard players operation #temp_next_page bh_loop_idx = #global bh_page
-scoreboard players add #temp_next_page bh_loop_idx 2
-
-# 3. Only show the "Next Page" button if the next page index is less than the total items
-# Conditionally create the next page button
-execute store result storage border_hoarder:temp params.next_page_num int 1 run scoreboard players get #temp_next_page bh_loop_idx
-execute if score #next_page_start bh_loop_idx < #total_items bh_loop_idx run function border_hoarder:journal/set_next_page_button with storage border_hoarder:temp params
-
-# Conditionally create the previous page button
+# Conditionally create the next and previous page buttons
+function border_hoarder:journal/set_next_page_button with storage border_hoarder:temp params
 function border_hoarder:journal/set_prev_page_button with storage border_hoarder:temp params
