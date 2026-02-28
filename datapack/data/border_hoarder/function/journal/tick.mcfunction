@@ -11,11 +11,14 @@ execute as @a[scores={bh_click_cooldown=1..}] run scoreboard players remove @s b
 # Remove viewing tag from anyone more than 5 blocks away
 execute as @a[tag=bh_viewing] at @s unless entity @e[tag=bh_anchor,distance=..5] run tag @s remove bh_viewing
 
+# If the previous page crossbow is in any player's cursor, move to next page
+execute as @a if items entity @s player.cursor crossbow[custom_data~{bh_action:prev_page}] run function border_hoarder:journal/prev_page
+
 # If the next page arrow is in any player's cursor, move to next page
 execute as @a if items entity @s player.cursor arrow[custom_data~{bh_action:next_page}] run function border_hoarder:journal/next_page
 
-# If the first page compass is in any player's cursor, move to first page
-execute as @a if items entity @s player.cursor compass[custom_data~{bh_action:first_page}] run scoreboard players set #global bh_page 0
+# If the refresh barrier is in any player's cursor, move to first page
+execute as @a if items entity @s player.cursor barrier[custom_data~{bh_action:reset}] run function border_hoarder:journal/calculate_missing
 
 # Remove any bh_display items from inventories, i.e. items in the collection log
 execute as @a[predicate=border_hoarder:has_ui_item] run clear @s *[custom_data~{bh_display:1b}]

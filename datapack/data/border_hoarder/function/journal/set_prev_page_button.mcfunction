@@ -1,0 +1,1 @@
+$item replace entity @e[tag=bh_anchor,limit=1] container.25 with minecraft:crossbow[item_name={"text":"Previous Page (#$(prev_page_num))","color":"green","italic":false},custom_data={bh_action:prev_page,bh_display:1b}]
