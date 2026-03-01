@@ -4,4 +4,5 @@
 advancement revoke @s only border_hoarder:root
 
 # Only proceed if the game is actually active
-execute if data storage border_hoarder:main {config:{is_active:1b}} run function border_hoarder:process_inventory
+execute if data storage border_hoarder:main {config:{is_active:1b}} \
+    run function border_hoarder:process_inventory

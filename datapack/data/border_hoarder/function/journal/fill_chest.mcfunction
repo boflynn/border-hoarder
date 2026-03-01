@@ -10,10 +10,6 @@ execute store result score #temp_idx bh_loop_idx run scoreboard players get #glo
 scoreboard players set #page_size bh_loop_idx 24
 scoreboard players operation #temp_idx bh_loop_idx *= #page_size bh_loop_idx
 
-# Persist variables into params property
-execute store result storage border_hoarder:temp params.slot int 1 run scoreboard players get #temp_slot bh_loop_slot
-execute store result storage border_hoarder:temp params.actual_index int 1 run scoreboard players get #temp_idx bh_loop_idx
-
 # Start the fill loop that will go through a page of items
 function border_hoarder:journal/fill_loop with storage border_hoarder:temp params
 

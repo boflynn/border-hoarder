@@ -1,42 +1,14 @@
 # Border Hoarder
 
-```mermaid
+This is a continuation of SimonDMC's custom map, [Boarder Hoarder](https://simondmc.com/projects/border-hoarder),
+updating it to the latest version of minecraft and supporting discovery of all items
+out of the box.
 
-graph TD;
-    LogIn[Player logs in]
-    Setup[setup.mcfunction]
+## TODO
 
-    LogIn-->Setup
-    Start[Player runs start function]
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
-
-```
-
-```mermaid
-graph TD;
-    Tick
-    HoldingArrow{bh_picked_up<br />score check}
-    check_arrow_action
-
-    Tick-->HoldingArrow
-    HoldingArrow-- No -->Tick
-    HoldingArrow-- Yes -->check_arrow_action
-    check_arrow_action-->inventory_check
-    inventory_check-- No -->Tick
-    inventory_check-- Yes -->fill_chest
-```
-
-```mermaid
-graph TD;
-    inventory_changed
-    GameStarted{Has Game<br />Started?}
-    inventory_changed-->inventory_changed_trigger
-    inventory_changed_trigger-->GameStarted
-    GameStarted-- No --> End
-    GameStarted-- Yes --> process_inventory
-    process_inventory-->loop_inventory
-    loop_inventory --> check_item_discovered
-```
+[ ] Installation instructions
+[ ] Documentation
+[ ] Code cleanup
+[ ] Add script for generating `populate_missing_items.mcfunction`
+[ ] Try to bring back the lobby
+[ ] Per-user paging

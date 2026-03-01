@@ -11,7 +11,7 @@ scoreboard players add @s bh_discovered 1
 function border_hoarder:apply_border_expansion with storage border_hoarder:main config
 
 # Global Announcement
-$tellraw @a ["",{"selector":"@s","color":"white","bold":true},{"text":" discovered ","color":"gray","bold":false},{"text":"$(item_id)","color":"gold","bold":true},{"text":"!","color":"gray","bold":false}]
+$tellraw @a ["",{"selector":"@s","color":"white","bold":true}, {"text":" discovered ","color":"gray","bold":false},{"text":"$(item_id)","color":"gold","bold":true},{"text":"!","color":"gray","bold":false}]
 
 # Effects
 playsound minecraft:entity.player.levelup player @a ~ ~ ~ 0.7 1.2
